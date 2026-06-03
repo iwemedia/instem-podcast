@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>in*STEM - Stories from inside Science and Technology</title>
+    <!-- Google Fonts: Space Grotesk für Tech-Überschriften, Inter für Lesbarkeit -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Globale CSS-Variablen für Colours */
+        :root {
+            --bg-deep-space: #0B132B; /* Haupt-Hintergrund & B2B-Box */
+            --bg-midnight: #1C2541;   /* Weicherer Hintergrund für Sektionen */
+            --akzent-aurora: #00ffff; /* Tech-Mint-Blue Aqua websicher */
+            --text-white: #FFFFFF;
+            --text-muted: #A0AEC0;
+ 
+        }
+	a {
+    		text-decoration: none;
+    		padding: 10px 20px;
+    		border-radius: 8px;
+        	color:  white;
+    		background-color: #0B132B;
+	 }
+     
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-midnight);
+            color: var(--text-white);
+            line-height: 1.6;
+            padding-top: 60px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--bg-deep-space);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-get-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-white);
+        }
+
+        .logo span {
+            color: var(--akzent-aurora);
+        }
+
+        .nav-tagline {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Sektionen Basis-Layout */
+        section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--text-white);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--akzent-aurora);
+            color: var(--bg-deep-space);
+        }
+
+        .btn-primary:hover {
+            background-color: #00ffff;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-white);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--akzent-aurora);
+            color: var(--akzent-aurora);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Sektion */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        .hero-cover img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-content h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h1 span {
+            color: var(--akzent-aurora);
+        }
+
+        .slogan {
+            font-size: 1.4rem;
+            color: var(--text-white);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* Audio Player Sektion */
+        .audio-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .player-container {
+            background-color: var(--bg-deep-space);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Staffel / Fahrplan Sektion */
+        .staffel-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .grid-fahrplan {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .etappe-card {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .etappe-card:hover {
+            border-color: var(--akzent-aurora);
+        }
+
+        .etappe-nr {
+            color: var(--akzent-aurora);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .etappe-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .etappe-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Sponsoring B2B Sektion (Voller Seitenbreiten-Wechsel) */
+        .b2b-wrapper {
+            background-color: var(--bg-deep-space);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .grid-sponsoring {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .sponsor-card {
+            background-color: var(--bg-midnight);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 35px;
+            border-radius: 12px;
+        }
+
+        .sponsor-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            color: var(--akzent-aurora);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .sponsor-card ul {
+            list-style: none;
+            color: var(--text-muted);
+        }
+
+        .sponsor-card ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .sponsor-card ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--akzent-aurora);
+        }
+
+        .center-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #060b18;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .footer-links a:hover {
+            color: var(--akzent-aurora);
+        }
+
+        /* Responsive Anpassungen für Tablets und Smartphones */
+        @media (max-width: 768px) {
+            body { padding-top: 110px; }
+            .nav-container { flex-direction: column; text-align: center; gap: 5px; }
+            .hero { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+            .hero-cover img { margin: 0 auto; max-width: 260px; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .slogan { font-size: 1.1rem; }
+            .grid-sponsoring { grid-template-columns: 1fr; }
+            .footer-container { flex-direction: column; gap: 15px; text-align: center; }
+            .footer-links a { margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+  	<header>
+   	 <div class="nav-container">
+          <a href="#" class="logo">in<span>*</span>STEM</a>
+        
+        <!-- Die neue Navigations-Leiste -->
+        <nav class="nav-links">
+            <a href="#">^</a>
+            <a href="#teaser">Konzept//Audio</a>
+            <a href="#fahrplan"> Staffel1//Audiogramme</a>
+            <a href="#sponsoring" class="nav-btn">Sponsoring</a>
+        </nav>
+        
+        <div class="nav-tagline">Ein Projekt von Sciencekompass.de</div>
+  	 </div>
+	</header>
+
+
+    <!-- Sektion 1: Hero Bereich -->
+    <section class="hero">
+        <div class="hero-cover">
+            <!-- Ersetze 'cover.jpg' mit dem Pfad zu deinem Podcast-Cover -->
+            <img src="cover.jpg" alt="in*STEM Podcast Cover">
+        </div>
+        <div class="hero-content">
+            <h1>in<span>*</span>STEM</h1>
+            <div class="slogan">Stories from inside Science and Technology</div>
+
+	<p class="hero-text">Der neue Reportage-Podcast. Wir nehmen dich mit an die Orte, an denen Zukunft entsteht  – 
+	von der Raketentechnik bis zu den Geowissenschaften. Ungefiltert, fachstark und im direkten Gespräch vor Ort 
+	mit den führenden Köpfen und inspirierenden Vorbildern der Branche </p>
+
+   <!-- Sektion 2: Audio Player Sektion -->
+	<section class="audio-section">
+   	 <h3>Hör rein: Die Mission in 2 Minuten</h3>
+    	<p>Erfahre im Konzept-Teaser sofort, wie das immersive Vor-Ort-Format klingt.</p>
+    		<div class="player-container">
+        	<audio controls>
+            	<source src="teaser.mp3" type="audio/mpeg">
+        	</audio>
+	<p> Ihr Browser unterstützt das Audio-Element nicht. <a href="#"Auf YouTube hören </a></p>
+
+
+    <!-- Sektion 3: Staffel / Fahrplan Sektion --> 
+
+	<section id="fahrplan" class="staffel-section">
+   	<h2>Staffel 1: „How to build a rocket and fly“</h2>
+    	<p class="fahrplan-intro">Eine 6-teilige Audio-Reportage entlang der echten Fachdisziplinen der mobilen Raketenbasis - mraba des DLR 
+	Im Interview hören wir hinter die Kulissen und lernen von der der Missionsplanung bis zum Start das Gebiet der Höhenforschungsraketen kennen. 
+	Ich treffe Ingenieurinnen und Technikerinnen. Sie berichten davon was es braucht, um die Forschungsmissionen Realität werden lassen.</p>
+    
+    <div class="grid-fahrplan">
+        <!-- Folge 1 -->
+        <div class="etappe-card">
+            <span class="etappe-nr">Folge 01</span>
+            <h3>moraba: Mobile Raketenbasis & Forschung</h3>
+            <! <p>Was ist die MORABA? Ein Blick hinter die Kulissen der Missionsplanung.</p>
+        </div>
+
+	<!-- Folge 2 -->
+        <div class="etappe-card">
+            <span class="etappe-nr">Folge 02</span>
+            <h3>Projektmanagement und Mechanische Flugsysteme</h3>
+            <p>Koordination, Wissen und Technik, was es braucht um Abzuheben.</p>
+        </div>
+
+	<!-- Folge 3 -->
+        <div class="etappe-card">
+            <span class="etappe-nr">Folge 03</span>
+            <h3> Elektronik & Sensorik</h3>
+            <p> Von Leiterplatten, Signalwegen und Kabelbäumen, was den Informationsfluss zusammenhält.</p>
+        </div>
+
+	<!-- Folge 4 -->
+        <div class="etappe-card">
+            <span class="etappe-nr">Folge 04</span>
+            <h3>Startdienste</h3>
+             <p>Alles rund ums Abheben. Prognosen, Logistik und Technik direkt bis an die Startplattform.</p>
+        </div>
+
+	<!-- Folge 5 -->
+        <div class="etappe-card">
+            <span class="etappe-nr">Folge 05</span>
+            <h3>Telemetry & Tracking</h3>
+            <p>Im Fluge und dannach: Über Flugbahnverfolgung, Recovery-Vorbereitung, Datenströmen und Funkverbindungen</p>
+        </div>
+
+	<!-- Folge 6 -->
+        <div class="etappe-card">
+            <span class="etappe-nr">Folge 06</span>
+            <h3>Datahandling</h3>
+            <p>Ein Computer ein Raketenherz: Vom Servicemodul: Datenformaten, Netzwerken und Übergabepunkten - Wo die Informatik auf Wissenschaft trifft.</p>
+        </div>
+
+    </div>
+</section>
+
+<div class="b2b-wrapper">
+    <section id="sponsoring">
+        <h2>Partner & Sponsoring</h2>
+        <p>Suchen Sie hochqualifizierte MINT-Fachkräfte, erfahrene Ingenieurinnen oder Technikerinnen für Ihr Unternehmen? „in*STEM“ bietet Ihnen eine reichweitenstarke Plattform für Ihr 	Employer Branding – vollkommen ohne Streuverluste und direkt im Ohr Ihrer Zielgruppe.
+	</p>
+        
+        <div class="grid-sponsoring">
+            <!-- Paket 1 -->
+            <div class="sponsor-card">
+                <h3>Exklusiv-Staffel-Sponsoring</h3>
+                <span class="price">komplette Staffel</span>
+                <ul>
+                    <li>Alleiniges, konkurrenzloses Audio-Branding in allen Folgen
+			Exklusive Nennung im Intro und Outro („Präsentiert von...“)
+			Permanente Logo-Präsenz auf dem Episodenbild
+			Kontakt-Link-Plazierung in den Shownotes
+			Unbegrenzte HR-Nutzungsrechte der produzierten Audios
+		    </li>
+                </ul>
+            </div>
+            <!-- Paket 2 -->
+            <div class="sponsor-card highlight-card"> 
+                <!-- Tipp: Hier fügen wir eine Extra-Klasse für ein Highlight hinzu -->
+                <h3>Fach-Cluster-Sponsoring</h3>
+                <span class="price">3 Episoden</span>
+                <ul>
+                    <li>Branding in 3 Fachfolgen
+			Ideal für die gezielte Besetzung spezifischer Vakanzen
+			Audio-Nennung in den gewählten Fokusdisziplinen
+			Kontakt-Link-Plazierung in den Shownotes
+		    </li>
+                </ul>
+            </div>
+	  
+
+        </div>
+
+        <div class="center-btn">
+            <a href="mailto: sciencekompass+sponsoring@posteo.de" class="btn btn-primary">MediaKit (PDF) anfordern</a>
+       	 </div>
+   	    <div class="sponsor-card">
+                <h3>Non-Exclusive-Partnerin</h3>
+                <span class="price">Eine Episode</span>
+                <ul>
+                    <li>Nennung im Intro und Outro („Präsentiert von...“)
+			Permanente Logo-Präsenz auf dem Episodenbild
+			Kontakt-Link-Plazierung in den Shownotes
+		    </li>
+                </ul>
+            </div>
+            	
+            <div class="sponsor-card"> 
+                <h3>Netzwerk-Partnerinnen</h3>
+                <span class="price">Einzelepisoden</span>
+                <ul>
+                    <li>VeranstaltungsHinweis, 
+			Verlosungen-Aktion
+			
+			Kooperationen für Netzwerke, Hörerinnen-Treffen 
+			für Women in STEM
+
+			Sponsoring-Angebot 
+			auf individuelle
+			Anfrage
+		    </li>
+                </ul>
+            </div>
+    </section>
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-copyright">
+            &copy; 2026 in*STEM. Ein Social Impact Projekt von Sciencekompass.de
+        </div>
+        <div class="footer-links">
+            <!-- Verlinke hier deine bestehenden Rechtstexte von Sciencekompass -->
+            <a href="https://sciencekompass.de" target="_blank">Impressum</a>
+            <a href="https://sciencekompass.de" target="_blank">Datenschutz</a>
+        </div>
+    </div>
+</footer>
+
+© 2026 in*STEM. Ein Social Entrepreneurship Projekt von Sciencekompass.de
+
+Impressum
+Datenschutz
